@@ -48,27 +48,10 @@ public class App extends Application {
         }
         for (int x = 0; x < xCells; x++) {
             for (int y = 0; y < yCells; y++) {
-                //for UNEVEN rows:
-                //y coord of center (in radius) 1-4-7-10  1,5y+1
-                //x coord of center 1-3-5-7  2x+1
-                //center of cell is at (2x + 1) * radius, (1,5y + 1) * radius
-
-                //top is at centerX, centerY - radius
-                //top right is at centerX + radius, centerY - radius/2
-                //bottom right is at centerX + radius, centerY + radius/2
-                //bottom is at centerX, centerY + radius
-                //bottom left is at centerX - radius, centerY + radius/2
-                //top left is at centerX - radius, centerY - radius/2
-
-
-                //for EVEN rows:
-                //y coord of center 2,5-5,5-8,5  1,5y + 1
-                //x coord of center 2-4-6-8 2x + 2
-                //center of cell is at (2x + 2) * radius, (1,5y + 1) * radius
 
                 Cell cell = mainBoard.getCell(x, y);
                 int centerX, centerY;
-                if (y % 2 == 0) { //TODO это должно задавать нечетный ряд(первый сверху, третий, тд) но задает четный
+                if (y % 2 == 0) {
                     centerX = (2 * x + 1) * radius;
                     centerY = (3 * y / 2 + 1) * radius;
                     center.get(x).set(y, new Pair<Integer, Integer>(centerX, centerY));
