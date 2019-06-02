@@ -69,9 +69,6 @@ public class Board {
         gameOver = true;
     }
 
-    //neighbors for even row: (x-1, y); (x, y-1); (x+1, y-1); (x+1, y); (x+1;y+1); (x, y+1)
-    //neighbors for uneven row: (x-1, y); (x-1, y-1); (x, y-1); (x+1, y); (x, y+1); (x-1, y+1)
-
     public List<Cell> getNeighbors(Cell cell) {
         List<Cell> neighbors = new ArrayList<>();
         int[] deltas1 = {-1, 0, -1, -1, 0, -1, 1, 0, 0, 1, -1, 1};
@@ -96,7 +93,6 @@ public class Board {
     }
 
     public void openCell(Cell cell) {
-        //if (cell.getOpened() || gameOver || cell.getFlagged()) return;
         cell.setOpened(true);
         if (cell.getBomb()) {
             gameOver = true;
@@ -104,7 +100,6 @@ public class Board {
     }
 
     public void flag(Cell cell) {
-        //if (cell.getOpened() || gameOver) return;
         if (!cell.getFlagged()) {
             cell.setFlagged(true);
             flagCount++;

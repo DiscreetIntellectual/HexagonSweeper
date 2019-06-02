@@ -69,7 +69,6 @@ public class App extends Application {
                         centerX - radius, centerY + radius / 2,
                         centerX - radius, centerY - radius / 2);
                 grid[x][y].setFill(new ImagePattern(new Image(path + "closed.png")));
-                //grid[x][y].relocate(centerX, centerY);
                 grid[x][y].setOnMouseClicked(e -> {
                     if (e.getButton() == MouseButton.PRIMARY)
                         openCell(cell);
@@ -163,11 +162,8 @@ public class App extends Application {
         root.getChildren().add(status);
 
 
-        //root.setColumnSpan(status, xCells);
 
         stage.setTitle("YourSweeper");
-        //sceneX = 2 * radius * xCells
-        //sceneY = 2 * radius * yCells + 30
         stage.setScene(new Scene(root, (2 * radius + 2) * xCells, 3 * radius / 2 * yCells + 50));
         stage.getIcons().add(new Image("file:\\D:\\Java Projects\\YoursSweeper\\resources\\bomb.jpg"));
         stage.show();
@@ -176,7 +172,7 @@ public class App extends Application {
 
     private void openCell(Cell cell) {
         Polygon polygon = grid[cell.getX()][cell.getY()];
-        if (cell.getOpened() || /*mainBoard.getGameOver() ||*/ cell.getFlagged()) return;
+        if (cell.getOpened() || mainBoard.getGameOver() || cell.getFlagged()) return;
         mainBoard.openCell(cell);
         if (cell.getBomb()) {
             polygon.setFill(new ImagePattern(new Image(path + "bomb.jpg")));
@@ -191,7 +187,7 @@ public class App extends Application {
 
     private void flag(Cell cell) {
         Polygon polygon = grid[cell.getX()][cell.getY()];
-        if (cell.getOpened() /*|| mainBoard.getGameOver()*/) return;
+        if (cell.getOpened() || mainBoard.getGameOver()) return;
         if (!cell.getFlagged()) {
             polygon.setFill(new ImagePattern(new Image(path + "flag.png")));
         }
